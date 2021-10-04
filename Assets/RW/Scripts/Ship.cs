@@ -72,6 +72,11 @@ public class Ship : MonoBehaviour
             MoveUp();
         }
 
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            MoveDown();
+        }
+
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             MoveLeft();
@@ -107,6 +112,11 @@ public class Ship : MonoBehaviour
     public void MoveUp()
     {
         transform.Translate(Vector3.back * Time.deltaTime * speed);
+    }
+
+    public void MoveDown()
+    {
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
     }
 
     public void MoveLeft()

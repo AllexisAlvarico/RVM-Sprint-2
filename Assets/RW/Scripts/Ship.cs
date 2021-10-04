@@ -27,7 +27,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,19 +34,25 @@ using UnityEngine;
 public class Ship : MonoBehaviour
 {
     public bool isDead = false;
+
     public float speed = 1;
+
     public bool canShoot = true;
 
     [SerializeField]
-    private  MeshRenderer mesh;
+    private MeshRenderer mesh;
+
     [SerializeField]
     private GameObject explosion;
+
     [SerializeField]
     private GameObject laser;
+
     [SerializeField]
     private Transform shotSpawn;
 
     private float maxLeft = -8;
+
     private float maxRight = 8;
 
     private void Update()
@@ -60,6 +65,11 @@ public class Ship : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && canShoot)
         {
             ShootLaser();
+        }
+
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            MoveUp();
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -94,6 +104,11 @@ public class Ship : MonoBehaviour
         return newLaser;
     }
 
+    public void MoveUp()
+    {
+        transform.Translate(Vector3.back * Time.deltaTime * speed);
+    }
+
     public void MoveLeft()
     {
         transform.Translate(-Vector3.left * Time.deltaTime * speed);
@@ -108,7 +123,7 @@ public class Ship : MonoBehaviour
         transform.Translate(-Vector3.right * Time.deltaTime * speed);
         if (transform.position.x > maxRight)
         {
-             transform.position = new Vector3(maxRight, -3.22f, 0);
+            transform.position = new Vector3(maxRight, -3.22f, 0);
         }
     }
 

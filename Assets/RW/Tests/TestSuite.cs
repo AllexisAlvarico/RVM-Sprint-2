@@ -85,5 +85,15 @@ public class TestSuite
         // 2
         Assert.AreEqual(game.score, 1);
     }
+
+    [UnityTest]
+    public IEnumerator ScoreIsZero()
+    {
+        game.isGameOver = true;
+        game.score = 5;
+        game.NewGame();
+        yield return new WaitForSeconds(0.1f);
+        Assert.AreEqual(game.score, 0);
+    }
         
 }
